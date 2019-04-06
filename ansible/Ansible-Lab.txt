@@ -2,9 +2,17 @@
 ##### Install Ansible #####
 ##########################
 
-#1. Instal Docker CE
+#1. Instal Ansible 
 yum install epel-release -y
 yum update -y
 yum install python -y
 yum install ansible -y
 yum install openssh-clients -y
+
+#2. Edit file /etc/ansible/hosts
+[servers]
+192.168.1.172
+
+
+
+
