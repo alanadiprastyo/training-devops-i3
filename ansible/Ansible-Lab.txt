@@ -1,0 +1,10 @@
+##########################
+##### Install Ansible #####
+##########################
+
+#1. Instal Docker CE
+yum install epel-release -y
+yum update -y
+yum install python -y
+yum install ansible -y
+yum install openssh-clients -y
