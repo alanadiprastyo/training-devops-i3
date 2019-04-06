@@ -9,9 +9,33 @@ yum install python -y
 yum install ansible -y
 yum install openssh-clients -y
 
-#2. Edit file /etc/ansible/hosts
+#2. Edit file /etc/ansible/hosts dan tambahkan script
 [servers]
 192.168.1.172
+
+#3. Menampilkan list host yang terdaftar di iventory
+ansible servers --list-hosts
+
+#4. Genarate SSH key di Ansible Server
+ssh-keygen
+
+#5. Copy SSH key public ke node server
+ssh-copy-id root@192.168.1.172
+
+#6. Pengecekkan host yang aktif
+ansible all -m ping
+
+#7. List module yang tersedia
+ansible-doc -l
+
+#8. Sample Install paket dengan Ansible
+ansible servers -b --become-user=root -m shell -a ‘yum install vsftpd -y’
+
+#9. Pengecekkan paket yang sudah terinstall
+ansible servers -b --become-user=root -m yum -a ‘name=vsftpd state=present update_cache=true’
+
+
+
 
 
 
