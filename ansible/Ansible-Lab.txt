@@ -33,7 +33,25 @@ ansible servers -b --become-user=root -m shell -a ‘yum install vsftpd -y’
 
 #9. Pengecekkan paket yang sudah terinstall
 ansible servers -b --become-user=root -m yum -a ‘name=vsftpd state=present update_cache=true’
+ 
 
+## Untuk konfigurasi plabook buat file dengan ekstensi .yml (file.yml) ##
+1. Ansible Playbook (Cara deklarasi variable)
+
+---
+  - hosts: servers
+    gather_facts: yes
+    become: yes
+
+    vars:
+        yumname: httpd
+
+    tasks:
+    - name: Install "{{ yumname }}"
+      yum: name = "{{ yumname }}" state=present
+...
+
+2. Ansible Playbook (Cara Install Paket)
 
 
 
