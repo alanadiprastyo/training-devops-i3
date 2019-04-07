@@ -1,0 +1,12 @@
+---
+  - hosts: servers
+    gather_facts: yes
+    become: yes
+
+    vars:
+        yumname: httpd
+
+    tasks:
+    - name: Install "{{ yumname }}"
+      yum: name = "{{ yumname }}" state=present
+...

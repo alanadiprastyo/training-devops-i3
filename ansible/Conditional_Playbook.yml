@@ -1,0 +1,20 @@
+---
+  - hosts: servers
+    gather_facts: yes
+    become: yes
+
+    vars:
+        yumname: httpd
+
+    tasks:
+    - name: Check if HTTP is already installed
+      command: rpm -qa | grep httpd
+      register: http_is_installed
+      failed_when: no
+
+    - name: Install "{{ yumname }}"
+      yum: name = "{{ yumname }}" state=present
+      when: http_is_installed.rc == 1
+      notify:
+      - restart httpd
+...
